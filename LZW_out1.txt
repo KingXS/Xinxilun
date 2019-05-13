@@ -1,0 +1,32 @@
+S=open("LZW_out.txt")#打开存放数组的文件
+str=S.readlines()#这是一个字符串数组
+length=len(str)#字符串数组的长度
+#print(length)
+p=[[0 for m in range(2)] for n in range(2)]
+for i in range(length):
+    #print(i)
+    #print(str[i][:-1])
+    lis1=str[i][:-1] #定义变量保存数组中每一行的值
+    lis2=lis1.split(" ") #将每一行的值按
+    lis3= list(map(int,lis2))
+    p[i] = list(lis3)
+    print(p)
+
+
+dictionary = {i: chr(i) for i in range(97, 123)}
+last = 256
+arr = [97, 97, 98, 256, 258, 257, 259]
+
+result = []
+p = arr.pop(0)
+result.append(dictionary[p])
+
+for c in arr:
+    if c in dictionary:
+        entry = dictionary[c]
+    result.append(entry)
+    dictionary[last] = dictionary[p] + entry[0]
+    last += 1
+    p = c
+
+print(''.join(result))
